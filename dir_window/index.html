@@ -1,0 +1,16 @@
+<html>
+<head>
+	<title>Hello World</title>
+	<link rel="stylesheet" href="css/main.css" />
+	<script type="text/javascript" src="js/main.js"></script>
+</head>
+<body class="bg-noise">
+<div id="main-window" class="page bg-lightgreen page-current">
+	<button onclick="app.fn.switchPage('save-dialog', 1)">test</button>
+</div>
+<div id="save-dialog" class="page bg-gray"></div>
+<script type="text/javascript">
+	app.fn.dirWindow('save-dialog').render();
+</script>
+</body>
+</html>
