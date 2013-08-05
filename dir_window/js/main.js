@@ -6,6 +6,7 @@
             gui : require('nw.gui'),
             fs : require('fs')
         },
+        events : {},
         view : {
             main : window
         },
@@ -17,7 +18,6 @@
     app.fn = {
         dirWindow : function(id) {
             if (!app.view.hasOwnProperty('dir_window')) {
-                // app.view.dir_window = new require('dir_window_model')();
                 var model = new require('dir_window_model')();
                 app.view.dir_window = new require('dir_window_view')(document, id, model);
                 app.view.dir_window.init();
@@ -38,14 +38,36 @@
                     outClass = 'page-moveToRight';
             }
             var currentPage = document.querySelector('.page-current');
-            currentPage.classList.add(outClass);
             nextPage.classList.add('page-current');
-            nextPage.classList.add(inClass);
-            setTimeout(function() {
+            currentPage.addEventListener('webkitAnimationEnd', function(e) {
                 currentPage.classList.remove('page-current');
                 currentPage.classList.remove(outClass);
+                currentPage.removeEventListener('webkitAnimationEnd');
+            });
+            nextPage.addEventListener('webkitAnimationEnd', function(e) {
+                nextPage.classList.add('page-current');
                 nextPage.classList.remove(inClass);
-            }, 1000);
+                nextPage.removeEventListener('webkitAnimationEnd');
+            });
+            currentPage.classList.add(outClass);
+            nextPage.classList.add(inClass);
+        },
+        showPanel : function(id) {
+            var self = this;
+            var panel = document.querySelector('#' + id);
+            var mask = document.querySelector('#mask');
+            mask.style.visibility = 'visible';
+            panel.classList.add('panel-current');
+            mask.addEventListener('click', function() {
+                self.hidePanel(id);
+            });
+        },
+        hidePanel : function(id) {
+            var panel = document.querySelector('#' + id);
+            var mask = document.querySelector('#mask');
+            mask.style.visibility = 'hidden';
+            panel.classList.remove('panel-current');
+            mask.removeEventListener('click');
         }
     };
 
@@ -68,5 +90,7 @@
         nodes = null;
         fragment = null;
     };
+
+    function saveFile() {}
 
 })(window);

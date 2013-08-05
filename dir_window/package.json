@@ -1,9 +1,9 @@
 {
-	"name" : "Hello World",
+	"name" : "nw markdown editor",
 	"main" : "index.html",
 	"window" : {
 		"toolbar" : false,
-		"width" : 500,
+		"width" : 960,
 		"height" : 600
 	}
 }

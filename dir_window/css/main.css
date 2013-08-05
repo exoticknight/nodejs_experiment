@@ -13,6 +13,12 @@ body {
     overflow: hidden;
 }
 
+textarea {
+    width: 90%;
+    height: 300px;
+    margin: 5px 5%;
+}
+
 ::-webkit-scrollbar-track-piece {background-color: transparent;}
 ::-webkit-scrollbar {width: 0;}
 ::-webkit-scrollbar-thumb {background:#999;}
@@ -46,7 +52,7 @@ body {
     position: absolute;
     top: 0;
     left: 0;
-    width: 500px;
+    width: 100%;
     visibility: hidden;
 }
 
@@ -69,6 +75,34 @@ body {
 
 .page-moveFromRight {
     -webkit-animation: moveFromRight .6s ease both;
+}
+
+.panel-wrap {
+    position: absolute;
+    top: 0;
+    right: -100%;
+    width: auto;
+    height: 100%;
+    z-index: 9999;
+    visibility: hidden;
+    -webkit-transition: .7s ease all;
+}
+
+.panel-current {
+    visibility: visible;
+    right: 0;
+}
+
+#mask {
+    visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 8888;
+    background-color: rgba(0, 0, 0, 0.3);
+    -webkit-transition: .6s ease all;
 }
 
 .scroll {
@@ -100,6 +134,7 @@ input[type=text] {
 }
 
 .app-panel-base {
+    width: 500px;
     height: 62px;
     line-height: 62px;
 }

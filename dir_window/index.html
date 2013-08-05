@@ -1,14 +1,22 @@
 <html>
 <head>
-	<title>Hello World</title>
+	<title>node-webkit Markdown Editor</title>
 	<link rel="stylesheet" href="css/main.css" />
 	<script type="text/javascript" src="js/main.js"></script>
 </head>
 <body class="bg-noise">
-<div id="main-window" class="page bg-lightgreen page-current">
-	<button onclick="app.fn.switchPage('save-dialog', 1)">test</button>
+<div id="mask"></div>
+<div id="main-window" class="page page-current bg-lightgreen bg-noise">
+    <div>
+        <textarea name="" id="" cols="30" rows="10"></textarea>
+    </div>
+    <div>
+        <button onclick="app.fn.showPanel('save-dialog')">save</button>
+
+    </div>
 </div>
-<div id="save-dialog" class="page bg-gray"></div>
+<!-- <div id="save-dialog" class="page bg-gray bg-noise"></div> -->
+<div id="save-dialog" class="panel-wrap bg-gray bg-noise"></div>
 <script type="text/javascript">
 	app.fn.dirWindow('save-dialog').render();
 </script>
