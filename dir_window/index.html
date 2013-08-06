@@ -1,24 +1,69 @@
 <html>
 <head>
-	<title>node-webkit Markdown Editor</title>
-	<link rel="stylesheet" href="css/main.css" />
-	<script type="text/javascript" src="js/main.js"></script>
+    <title>node-webkit Markdown Editor</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <meta charset="utf-8">
+    <meta name='viewport' content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="css/github.min.css">
+    <link rel="stylesheet" href="css/codemirror.css">
+    <style>
+        #input {
+            /*display:none;*/
+        }
+        .CodeMirror {
+            border: 1px solid #eee;
+            height: auto;
+            font-size: 1.2em;
+        }
+        .CodeMirror-scroll {
+            overflow-y: hidden;
+            overflow-x: auto;
+        }
+    </style>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script src="js/highlight.min.js"></script>
+    <script src='js/marked.js'></script>
+    <script src="js/CodeMirror/lib/codemirror.js"></script>
+    <script src="js/CodeMirror/addon/edit/trailingspace.js"></script>
+    <script src="js/CodeMirror/addon/edit/closebrackets.js"></script>
+    <script src="js/CodeMirror/addon/edit/closetag.js"></script>
+    <script src="js/CodeMirror/addon/mode/overlay.js"></script>
+    <script src="js/CodeMirror/mode/markdown/markdown.js"></script>
+    <script src="js/CodeMirror/mode/gfm/gfm.js"></script>
+    <script src="js/jquery.min.js"></script>
 </head>
 <body class="bg-noise">
-<div id="mask"></div>
-<div id="main-window" class="page page-current bg-lightgreen bg-noise">
-    <div>
-        <textarea name="" id="" cols="30" rows="10"></textarea>
-    </div>
-    <div>
-        <button onclick="app.fn.showPanel('save-dialog')">save</button>
-
-    </div>
-</div>
-<!-- <div id="save-dialog" class="page bg-gray bg-noise"></div> -->
-<div id="save-dialog" class="panel-wrap bg-gray bg-noise"></div>
-<script type="text/javascript">
-	app.fn.dirWindow('save-dialog').render();
-</script>
+    <div id="mask"></div>
+    <div id="main-window" class="page page-current bg-gray bg-noise">
+        <div class=" container scroll-y">
+            <div class="container-left">
+                <textarea id="input">
+Powered by [jQuery](http://jquery.com/), [marked](https://github.com/chjj/marked), [Highlight.js ](http://softwaremaniacs.org/soft/highlight/en/) and [MathJax](http://www.mathjax.org/).
+</textarea>
+            </div>
+            <div id="output" class="container-right scroll-x"></div>
+        </div>
+        <div class="control-panel">
+            <button onclick="app.fn.showPanel('save-dialog')">save</button>
+        </div>
+    </div><!-- end page -->
+    <div id="save-dialog" class="panel-wrap bg-gray bg-noise"></div>
+    <script type="text/javascript">
+        app.fn.dirWindow('save-dialog').render();
+    </script>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                processEscapes: true,
+                skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+            }
+        });
+    </script>
+    <script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="js/render.js"></script>
+    <script type="text/javascript">
+    dynamic_render('input', 'output');
+    </script>
 </body>
 </html>

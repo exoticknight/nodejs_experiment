@@ -6,7 +6,7 @@
 }
 
 body {
-    -webkit-user-select :none;
+    /*-webkit-user-select :none;*/
     -webkit-app-region: drag;
     min-width: 500px;
     min-height: 600px;
@@ -20,7 +20,7 @@ textarea {
 }
 
 ::-webkit-scrollbar-track-piece {background-color: transparent;}
-::-webkit-scrollbar {width: 0;}
+::-webkit-scrollbar {width: 2px;}
 ::-webkit-scrollbar-thumb {background:#999;}
 
 .bg-noise {
@@ -53,7 +53,10 @@ textarea {
     top: 0;
     left: 0;
     width: 100%;
+    height: 600px;
     visibility: hidden;
+    display: -webkit-box;
+    -webkit-box-orient:vertical;
 }
 
 .page-current {
@@ -104,12 +107,6 @@ textarea {
     background-color: rgba(0, 0, 0, 0.3);
     -webkit-transition: .6s ease all;
 }
-
-.scroll {
-    overflow-y: auto;
-}
-
-.scroll:hover::-webkit-scrollbar {width: 2px;}
 
 .button, button {
     min-width: 50px;
@@ -184,4 +181,35 @@ input[type=text] {
     background-image: url(../resources/folder.png);
     background-position: 0;
     background-repeat: no-repeat;
+}
+
+.container {
+    -webkit-box-flex: 1;
+    display: -webkit-box;
+    -webkit-box-align: start ;
+    -webkit-box-pack: justify;
+}
+
+.container-left {
+    min-width: 49%;
+    max-width: 49%;
+    -webkit-flex-box: 1;
+}
+
+.container-right {
+    min-width: 49%;
+    margin: 0 5px;
+    overflow: hidden;
+}
+
+.control-panel {
+    height: 50px;
+}
+
+.scroll-y {
+    overflow-y: auto;
+}
+
+.scroll-x {
+    overflow-x: auto;
 }
